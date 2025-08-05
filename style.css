@@ -1,0 +1,309 @@
+/* Réinitialisation et variables de base */
+:root {
+    --zen-sage: #8A9A5B; /* Vert sauge principal */
+    --zen-sage-light: #F0F2E6; /* Vert sauge très clair pour les fonds */
+    --zen-earth-light: #D2B48C; /* Tan / Terre clair pour les accents */
+    --background: #FFFFFF;
+    --foreground: #333333;
+    --muted-foreground: #666666;
+    --border: #E5E7EB;
+    --destructive: #DC2626; /* Rouge pour les messages "Complet" */
+
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-zen: 0 10px 15px -3px var(--zen-sage-light), 0 4px 6px -2px var(--zen-sage-light);
+}
+
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    padding-top: 72px; /* Hauteur du header */
+}
+
+/* Utilitaires généraux */
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+
+.fixed { position: fixed; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.top-0 { top: 0; }
+.w-full { width: 100%; }
+.z-50 { z-index: 50; }
+.min-h-screen { min-height: 100vh; }
+.flex { display: flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+.block { display: block; }
+
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.flex-col { flex-direction: column; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.gap-12 { gap: 3rem; }
+.space-x-6 > :not([hidden]) ~ :not([hidden]) { margin-left: 1.5rem; }
+.space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+.pt-12 { padding-top: 3rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-16 { margin-bottom: 4rem; }
+.mt-16 { margin-top: 4rem; }
+
+.text-center { text-align: center; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-6xl { font-size: 4rem; }
+.font-light { font-weight: 300; }
+.font-bold { font-weight: 700; }
+.leading-relaxed { line-height: 1.625; }
+.leading-tight { line-height: 1.25; }
+
+.text-white { color: white; }
+.text-white\/80 { color: rgba(255, 255, 255, 0.8); }
+.text-white\/90 { color: rgba(255, 255, 255, 0.9); }
+.text-white\/60 { color: rgba(255, 255, 255, 0.6); }
+.text-zen-sage { color: var(--zen-sage); }
+.text-zen-earth-light { color: var(--zen-earth-light); }
+.text-foreground { color: var(--foreground); }
+.text-foreground\/80 { color: rgba(51, 51, 51, 0.8); }
+.text-muted-foreground { color: var(--muted-foreground); }
+.text-destructive { color: var(--destructive); }
+
+.bg-background { background-color: var(--background); }
+.bg-background\/80 { background-color: rgba(255, 255, 255, 0.8); }
+.bg-zen-sage { background-color: var(--zen-sage); }
+.bg-zen-sage-light { background-color: var(--zen-sage-light); }
+.bg-black\/20 { background-color: rgba(0, 0, 0, 0.2); }
+
+.border-b { border-bottom-width: 1px; }
+.border-border { border-color: var(--border); }
+.border-white\/20 { border-color: rgba(255, 255, 255, 0.2); }
+
+.rounded-2xl { border-radius: 1rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.overflow-hidden { overflow: hidden; }
+.shadow-zen { box-shadow: var(--shadow-zen); }
+.backdrop-blur-md { backdrop-filter: blur(12px); }
+
+.transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+.transform { transform: scale(1); }
+.hover\:scale-105:hover { transform: scale(1.05); }
+
+/* Styles spécifiques aux composants */
+
+/* Header */
+header a { text-decoration: none; }
+.hover\:text-zen-sage:hover { color: var(--zen-sage); }
+
+/* Boutons */
+.btn-primary {
+    background-color: var(--zen-sage);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    box-shadow: var(--shadow-zen);
+    transition: all 0.3s;
+}
+.btn-primary:hover {
+    background-color: #7b8a4a;
+    transform: scale(1.05);
+}
+
+.btn-primary-large {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--zen-sage);
+    color: white;
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-size: 1.125rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.btn-primary-large:hover {
+    background-color: #7b8a4a;
+    transform: scale(1.05);
+}
+
+.btn-secondary-large {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-size: 1.125rem;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.btn-secondary-large:hover {
+    background-color: white;
+    color: var(--zen-sage);
+}
+
+.btn-outline-large {
+     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid var(--zen-sage);
+    color: var(--zen-sage);
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-size: 1.125rem;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.btn-outline-large:hover {
+    background-color: var(--zen-sage);
+    color: white;
+}
+
+
+/* Section Héros */
+#accueil .bg-cover {
+    background-size: cover;
+}
+#accueil .bg-center {
+    background-position: center;
+}
+
+/* Cartes (Services, Contact) */
+.card {
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background-color: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s;
+    position: relative;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-zen);
+}
+.card.popular {
+    border: 2px solid var(--zen-sage);
+}
+.badge-popular {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--zen-sage);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.card-header {
+    padding: 1.5rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.card-title {
+    font-size: 1.25rem;
+    color: var(--zen-sage);
+    font-weight: 600;
+}
+.card-description {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+.card-content {
+    padding: 1.5rem;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Galerie */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s;
+}
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-zen);
+}
+.gallery-item img {
+    width: 100%;
+    height: 16rem; /* 256px */
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Section Réservation */
+.booking-cta {
+    background-color: var(--zen-sage-light);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 56rem; /* 896px */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Media Queries pour la responsivité */
+@media (min-width: 768px) {
+    .md\:flex { display: flex; }
+    .md\:block { display: block; }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .md\:text-6xl { font-size: 3.75rem; }
+    .md\:text-4xl { font-size: 2.25rem; }
+    .md\:text-2xl { font-size: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+    .flex-col { flex-direction: column; }
+    .sm\:flex-row { flex-direction: row; }
+}
